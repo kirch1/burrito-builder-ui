@@ -15,12 +15,19 @@ class App extends Component {
 
   componentDidMount() {
     getOrders()
-      .then(data => this.setState({orders: data.orders}))
-      .catch(err => console.error('Error fetching:', err));
+      .then(data => this.setState({orders: data.orders, errorMsg: ''}))
+      .catch(err => {
+        console.log('Error fetching:', err);
+        this.setState({errorMsg: 'Error fetching orders!'});
+      });
   }
 
   setOrders = newOrder => {
     this.setState({orders: [...this.state.orders, newOrder]})
+  }
+
+  setError = (error) => {
+    this.setState({errorMsg: error})
   }
 
   render() {
@@ -28,7 +35,8 @@ class App extends Component {
       <main className="App">
         <header>
           <h1>Burrito Builder</h1>
-          <OrderForm setOrders={this.setOrders}/>
+          {this.state.errorMsg && <p>{this.state.errorMsg}</p>}
+          <OrderForm setOrders={this.setOrders} setError={this.setError}/>
         </header>
 
         <Orders orders={this.state.orders}/>

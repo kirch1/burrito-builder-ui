@@ -15,8 +15,14 @@ class OrderForm extends Component {
     e.preventDefault();
     if(this.state.name && this.state.ingredients) {
       addOrder(this.state.name, this.state.ingredients)
-        .then(data => this.props.setOrders(data))
-        .catch()
+        .then(data => {
+          this.props.setOrders(data);
+          this.props.setError('');
+        })
+        .catch(err => {
+          console.log('Error posting:', err);
+          this.props.setError('Error creating new order!');
+        });
       this.clearInputs();
     }else {
       alert('Please add name and at least one ingredient');
