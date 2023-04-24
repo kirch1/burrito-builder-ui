@@ -2,6 +2,11 @@ import React from 'react';
 import './Orders.css';
 
 const Orders = props => {
+
+  const deleteClick = (id) => {
+    console.log(id)
+  }
+
   const orderEls = props.orders.map(order => {
     return (
       <div className="order" key={order.id}>
@@ -11,6 +16,7 @@ const Orders = props => {
             return <li key={ingredient}>{ingredient}</li>
           })}
         </ul>
+        <button className='delete-order' onClick={() => deleteClick(order.id)}>X</button>
       </div>
     )
   });

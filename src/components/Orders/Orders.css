@@ -3,6 +3,7 @@
   display: inline-block;
   margin: 10px;
   background-color: #FFF;
+  padding-bottom: 10px;
 }
 
 .ingredient-list {
