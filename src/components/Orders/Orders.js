@@ -21,8 +21,8 @@ const Orders = props => {
       <div className="order" key={order.id}>
         <h3>{order.name}</h3>
         <ul className="ingredient-list">
-          {order.ingredients.map(ingredient => {
-            return <li key={ingredient}>{ingredient}</li>
+          {order.ingredients.map((ingredient, i) => {
+            return <li key={ingredient + i}>{ingredient}</li>
           })}
         </ul>
         <button className='delete-order' onClick={() => deleteClick(order.id)}>X</button>
