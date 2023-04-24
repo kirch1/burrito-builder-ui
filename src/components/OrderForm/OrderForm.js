@@ -14,13 +14,14 @@ class OrderForm extends Component {
     e.preventDefault();
     if(this.state.name && this.state.ingredients) {
       this.clearInputs();
-
+    }else {
+      alert('Please add name and at least one ingredient');
     }
   }
 
   handleIngredientChange = e => {
     e.preventDefault();
-    this.setState({ingredients: [...this.state.ingredients, e.target.name]})
+    this.setState({ingredients: [...this.state.ingredients, e.target.name]});
   }
 
   handleNameChange = e => {
