@@ -13,7 +13,7 @@ class OrderForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    if(this.state.name && this.state.ingredients) {
+    if(this.state.name && this.state.ingredients.length) {
       addOrder(this.state.name, this.state.ingredients)
         .then(data => {
           this.props.setOrders(data);
@@ -25,7 +25,7 @@ class OrderForm extends Component {
         });
       this.clearInputs();
     }else {
-      alert('Please add name and at least one ingredient');
+      this.props.setError('Please add name and at least one ingredient');
     }
   }
 

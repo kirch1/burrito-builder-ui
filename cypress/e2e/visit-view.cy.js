@@ -4,12 +4,12 @@ describe('Test for visiting and viewing existing orders', () => {
       fixture: 'orders.json'
     })
     cy.visit('http://localhost:3000/');
-  })
+  });
 
   //as a user, I should be able to visit the site and view the header text
   it('Should be able to view header', () => {
     cy.get('header').contains('Burrito Builder');
-  })
+  });
 
   //as a user, I should be able to visit the site view the empty form
   it('Should be able to view empty form', () => {
@@ -42,7 +42,7 @@ describe('No orders test', () => {
   });
 });
 
-describe('Fetch network error', () => {
+describe('GET network error', () => {
   beforeEach(() => {
     cy.intercept('GET', 'http://localhost:3001/api/v1/orders', {
       statusCode: 400
