@@ -11,4 +11,5 @@ export const addOrder = (name, ingredients) => {
     },
     body: JSON.stringify({name: name, ingredients: ingredients})
   })
+  .then(response => response.json())
 }

@@ -8,7 +8,8 @@ class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      orders: []
+      orders: [],
+      errorMsg: ''
     }
   }
 
@@ -18,7 +19,7 @@ class App extends Component {
       .catch(err => console.error('Error fetching:', err));
   }
 
-  addOrder(newOrder) {
+  setOrders = newOrder => {
     this.setState({orders: [...this.state.orders, newOrder]})
   }
 
@@ -27,7 +28,7 @@ class App extends Component {
       <main className="App">
         <header>
           <h1>Burrito Builder</h1>
-          <OrderForm addOrder={this.addOrder}/>
+          <OrderForm setOrders={this.setOrders}/>
         </header>
 
         <Orders orders={this.state.orders}/>

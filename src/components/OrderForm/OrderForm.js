@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { addOrder } from '../../apiCalls';
 
 class OrderForm extends Component {
   constructor(props) {
@@ -13,6 +14,9 @@ class OrderForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if(this.state.name && this.state.ingredients) {
+      addOrder(this.state.name, this.state.ingredients)
+        .then(data => this.props.setOrders(data))
+        .catch()
       this.clearInputs();
     }else {
       alert('Please add name and at least one ingredient');
