@@ -14,12 +14,16 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getOrderData();
+  }
+
+  getOrderData = () => {
     getOrders()
-      .then(data => this.setState({orders: data.orders, errorMsg: ''}))
-      .catch(err => {
-        console.log('Error fetching:', err);
-        this.setState({errorMsg: 'Error fetching orders!'});
-      });
+    .then(data => this.setState({orders: data.orders, errorMsg: ''}))
+    .catch(err => {
+      console.log('Error fetching:', err);
+      this.setState({errorMsg: 'Error fetching orders!'});
+    });
   }
 
   setOrders = newOrder => {
@@ -39,7 +43,7 @@ class App extends Component {
           <OrderForm setOrders={this.setOrders} setError={this.setError}/>
         </header>
 
-        <Orders orders={this.state.orders}/>
+        <Orders orders={this.state.orders} getOrderData={this.getOrderData} setError={this.setError}/>
       </main>
     );
   }

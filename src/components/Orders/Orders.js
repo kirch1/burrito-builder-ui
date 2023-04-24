@@ -1,10 +1,19 @@
 import React from 'react';
 import './Orders.css';
+import { deleteOrder } from '../../apiCalls';
 
 const Orders = props => {
 
   const deleteClick = (id) => {
-    console.log(id)
+    deleteOrder(id)
+      .then(() => {
+        props.setError('');
+        props.getOrderData();
+      })
+      .catch(error => {
+        console.log("here", error);
+        props.setError('There was a problem deleting the order!');
+      })
   }
 
   const orderEls = props.orders.map(order => {
