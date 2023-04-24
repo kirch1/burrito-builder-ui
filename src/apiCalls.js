@@ -1,6 +1,6 @@
 export const getOrders = () => {
   return fetch('http://localhost:3001/api/v1/orders')
-      .then(response => response.json())
+      .then(response => response.json());
 }
 
 export const addOrder = (name, ingredients) => {
@@ -11,5 +11,12 @@ export const addOrder = (name, ingredients) => {
     },
     body: JSON.stringify({name: name, ingredients: ingredients})
   })
-  .then(response => response.json())
+  .then(response => response.json());
+}
+
+export const deleteOrder = (id) => {
+  return fetch(`http://localhost:3001/api/v1/orders/${id}`, {
+    method: 'DELETE'
+  })
+  .then(response => response.json());
 }
